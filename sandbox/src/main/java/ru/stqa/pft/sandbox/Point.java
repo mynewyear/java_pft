@@ -1,4 +1,4 @@
-package distance;
+package ru.stqa.pft.sandbox;
 
 public class Point {
     private int x;
