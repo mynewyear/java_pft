@@ -34,41 +34,45 @@ public class ContactCreationTest {
     public void ContactCreationTest() {
 
         createNewContact();
+        fillContactForm(new ContactData("Nata", "LastName", "Nata", "tester", "company", "Russia", "1234567890", "test1@gmail.com", "1990", "so many notes"));
+        submitNewContact();
+        goToHomePage();
+    }
 
+    private void fillContactForm(ContactData contactData) {
         wd.findElement(By.name("firstname")).click();
         wd.findElement(By.name("firstname")).clear();
-        wd.findElement(By.name("firstname")).sendKeys("Nata");
-
+        wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstName());
 
         wd.findElement(By.name("lastname")).click();
         wd.findElement(By.name("lastname")).clear();
-        wd.findElement(By.name("lastname")).sendKeys("LastName");
+        wd.findElement(By.name("lastname")).sendKeys(contactData.getLastName());
 
         wd.findElement(By.name("nickname")).click();
         wd.findElement(By.name("nickname")).clear();
-        wd.findElement(By.name("nickname")).sendKeys("Nata");
+        wd.findElement(By.name("nickname")).sendKeys(contactData.getNick());
 
         wd.findElement(By.name("title")).click();
         wd.findElement(By.name("title")).clear();
-        wd.findElement(By.name("title")).sendKeys("tester");
+        wd.findElement(By.name("title")).sendKeys(contactData.getTitle());
 
         wd.findElement(By.name("company")).click();
         wd.findElement(By.name("company")).clear();
-        wd.findElement(By.name("company")).sendKeys("company");
+        wd.findElement(By.name("company")).sendKeys(contactData.getCompany());
 
         wd.findElement(By.name("address")).click();
         wd.findElement(By.name("address")).clear();
-        wd.findElement(By.name("address")).sendKeys("Russia");
+        wd.findElement(By.name("address")).sendKeys(contactData.getAddress());
 
         wd.findElement(By.name("home")).click();
         wd.findElement(By.name("home")).clear();
-        wd.findElement(By.name("home")).sendKeys("1234567890");
+        wd.findElement(By.name("home")).sendKeys(contactData.getPhone());
 
         wd.findElement(By.name("email")).click();
         wd.findElement(By.name("email")).clear();
-        wd.findElement(By.name("email")).sendKeys("test1@gmail.com");
+        wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
 
- //       addBirthday
+        //       addBirthday
         if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[1]")).isSelected()) {
             wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[1]")).click();
         }
@@ -80,17 +84,8 @@ public class ContactCreationTest {
         }
         wd.findElement(By.name("byear")).click();
         wd.findElement(By.name("byear")).clear();
-        wd.findElement(By.name("byear")).sendKeys("1990");
-// anniversary
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/select[3]//option[3]")).isSelected()) {
-            wd.findElement(By.xpath("//div[@id='content']/form/select[3]//option[3]")).click();
-        }
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/select[4]//option[2]")).isSelected()) {
-            wd.findElement(By.xpath("//div[@id='content']/form/select[4]//option[2]")).click();
-        }
-        wd.findElement(By.name("ayear")).click();
-        wd.findElement(By.name("ayear")).clear();
-        wd.findElement(By.name("ayear")).sendKeys("2000");
+        wd.findElement(By.name("byear")).sendKeys(contactData.getByear());
+
 // group
         if (!wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[2]")).isSelected()) {
             wd.findElement(By.xpath("//div[@id='content']/form/select[5]//option[2]")).click();
@@ -98,10 +93,7 @@ public class ContactCreationTest {
 //notes
         wd.findElement(By.name("notes")).click();
         wd.findElement(By.name("notes")).clear();
-        wd.findElement(By.name("notes")).sendKeys("so many notes");
-        
-        submitNewContact();
-        goToHomePage();
+        wd.findElement(By.name("notes")).sendKeys(contactData.getNotes());
     }
 
     private void goToHomePage() {
