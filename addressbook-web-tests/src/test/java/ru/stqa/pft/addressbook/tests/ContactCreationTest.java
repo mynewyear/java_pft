@@ -12,7 +12,7 @@ public class ContactCreationTest extends  TestBase{
         app.createNewContact();
         app.fillContactForm(new ContactData("Nata", "LastName", "Nata", "tester", "company", "Russia", "1234567890", "test1@gmail.com", "1990", "so many notes"));
         app.submitNewContact();
-        app.goToHomePage();
+        app.getNavigationHelper().goToHomePage();
     }
 
 
