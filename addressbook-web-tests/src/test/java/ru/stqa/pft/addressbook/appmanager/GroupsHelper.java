@@ -17,11 +17,11 @@ public class GroupsHelper extends HelperBase {
         click(By.linkText("group page"));
     }
 
-    public void submitGoupCreation() {
+    public void submitGroupCreation() {
         click(By.name("submit"));
     }
 
-    public void fillGoupForm(GroupData groupData) {
+    public void fillGroupForm(GroupData groupData) {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
@@ -37,5 +37,13 @@ public class GroupsHelper extends HelperBase {
 
     public void selectGroup() {
         click(By.name("selected[]"));
+    }
+
+    public void innitGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
     }
 }
