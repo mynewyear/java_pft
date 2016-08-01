@@ -4,9 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-/**
- * Created by IEUser on 8/1/2016.
- */
+
 public class HelperBase {
     protected FirefoxDriver wd;
 
@@ -17,6 +15,8 @@ public class HelperBase {
     protected void click(By locator) {
         wd.findElement(locator).click();
     }
+
+    protected  void isSelected(By locator){wd.findElement(locator).isSelected();}
 
     protected void type(By locator, String text) {
         click(locator);
