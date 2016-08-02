@@ -33,13 +33,13 @@ public class ContactHelper extends HelperBase{
        type(By.name("email"),contactData.getEmail());
 
         //       addBirthday
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[1]")).isSelected()) {
+        if (!elementSelected(By.xpath("//div[@id='content']/form/select[1]//option[1]"))) {
            click(By.xpath("//div[@id='content']/form/select[1]//option[1]"));
         }
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/select[1]//option[3]")).isSelected()) {
+        if (!elementSelected(By.xpath("//div[@id='content']/form/select[1]//option[3]"))) {
            click(By.xpath("//div[@id='content']/form/select[1]//option[3]"));
         }
-        if (!wd.findElement(By.xpath("//div[@id='content']/form/select[2]//option[2]")).isSelected()) {
+        if (!elementSelected(By.xpath("//div[@id='content']/form/select[2]//option[2]"))) {
            click(By.xpath("//div[@id='content']/form/select[2]//option[2]"));
         }
        type(By.name("byear"),contactData.getByear());
@@ -55,11 +55,12 @@ public class ContactHelper extends HelperBase{
 
     //click popup button
     public void deleteSelectedContactPopup(){
-       wd.switchTo().alert().accept();
+        alertAccept();
     }
 
+
     public void selectFirstContact() {
-        if (!wd.findElement(By.xpath("//*[@type='checkbox']")).isSelected()) {
+        if (!elementSelected(By.xpath("//*[@type='checkbox']"))) {
            click(By.xpath("//*[@type='checkbox']"));
         }
     }
