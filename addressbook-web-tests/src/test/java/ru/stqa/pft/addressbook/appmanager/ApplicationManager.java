@@ -35,8 +35,10 @@ public class ApplicationManager {
             wd = new ChromeDriver();
         }else if(browser.equals(BrowserType.IE)){
             wd = new InternetExplorerDriver();
+        }else{
+            wd = new FirefoxDriver();
         }
-        wd = new FirefoxDriver();
+
         wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/group.php");
         groupsHelper = new GroupsHelper(wd);
