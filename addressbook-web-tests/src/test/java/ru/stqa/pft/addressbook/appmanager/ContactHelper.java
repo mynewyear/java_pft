@@ -13,6 +13,7 @@ import ru.stqa.pft.addressbook.model.ContactData;
 public class ContactHelper extends HelperBase {
 
 
+
     public ContactHelper(WebDriver wd) {
         super(wd);
 
@@ -50,9 +51,9 @@ public class ContactHelper extends HelperBase {
 //notes
         type(By.name("notes"), contactData.getNotes());
 
-        if(creation){
+        if (creation) {
             new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-        }else {
+        } else {
             Assert.assertFalse(isElementPresent(By.className("new_group")));
         }
     }
@@ -75,6 +76,8 @@ public class ContactHelper extends HelperBase {
         }
     }
 
+ //   public void goToHomePage() { click(By.linkText("home"));  }
+
     public void submitNewContact() {
        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
@@ -89,5 +92,16 @@ public class ContactHelper extends HelperBase {
 
     public void updateContact() {
         click(By.name("update"));
+    }
+
+    public void createContact(ContactData contactData, boolean creation) {
+        initContactCreation();
+        fillContactForm(contactData, creation);
+        submitNewContact();
+ //       goToHomePage();
+    }
+
+    public boolean isThereContact() {
+        return isElementPresent(By.xpath("//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 }
