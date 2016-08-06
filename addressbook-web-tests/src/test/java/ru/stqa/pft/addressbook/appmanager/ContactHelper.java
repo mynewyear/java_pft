@@ -104,4 +104,8 @@ public class ContactHelper extends HelperBase {
     public boolean isThereContact() {
         return isElementPresent(By.xpath("//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
+
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
 }

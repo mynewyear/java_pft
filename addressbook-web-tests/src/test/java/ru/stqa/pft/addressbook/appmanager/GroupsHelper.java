@@ -36,8 +36,9 @@ public class GroupsHelper extends HelperBase {
         click(By.name("delete"));
     }
 
-    public void selectGroup() {
-        click(By.name("selected[]"));
+    public void selectGroup(int index) {
+
+ //       click(By.name("selected[]"));
     }
 
     public void innitGroupModification() {
@@ -59,4 +60,10 @@ public class GroupsHelper extends HelperBase {
     public boolean isThereGroup() {
         return isElementPresent(By.name("selected[]"));
     }
+
+    public int getGroupCount() {
+      return  wd.findElements(By.name("selected[]")).size();
+    }
+
+
 }
