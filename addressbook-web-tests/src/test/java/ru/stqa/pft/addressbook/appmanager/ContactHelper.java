@@ -70,13 +70,16 @@ public class ContactHelper extends HelperBase {
 
 
 
-    public void selectFirstContact() {
-        if (!elementSelected(By.xpath("//*[@type='checkbox']"))) {
-           click(By.xpath("//*[@type='checkbox']"));
-        }
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
+//        if (!elementSelected(By.xpath("//*[@type='checkbox']"))) {
+//           click(By.xpath("//*[@type='checkbox']"));
+//        }
     }
 
- //   public void goToHomePage() { click(By.linkText("home"));  }
+    public void selectEditContact(int index) {
+        wd.findElements(By.xpath("//td[8]/a/img")).get(index).click();
+    }
 
     public void submitNewContact() {
        click(By.xpath("//div[@id='content']/form/input[21]"));

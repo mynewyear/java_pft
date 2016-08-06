@@ -26,8 +26,7 @@ public class GroupModificationTests extends TestBase {
         app.getNavigationHelper().goToGroupPage();
         //count
         int after = app.getGroupsHelper().getGroupCount();
-        Assert.assertEquals(after, before
-        );
+        Assert.assertEquals(after, before);
 
     }
 }

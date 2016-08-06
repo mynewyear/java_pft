@@ -20,7 +20,8 @@ public class ContactModificationTests extends TestBase {
                     "so many notes", "test3"), true);
 
         }
-        app.getContactHelper().editFirstContact();
+//        app.getContactHelper().editFirstContact();
+        app.getContactHelper().selectEditContact(before - 1);
         app.getContactHelper().fillContactForm(new ContactData("firstName",null,
                 "new nick", "newTitle", "newCompany", "world", "0987654321", "newEmail@test.com", "1989",
                 "more notes than last time",null),false);
