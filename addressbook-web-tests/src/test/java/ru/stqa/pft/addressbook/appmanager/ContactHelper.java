@@ -97,11 +97,10 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public void createContact(ContactData contactData, boolean creation) {
+    public void createContact(ContactData contactData) {
         initContactCreation();
-        fillContactForm(contactData, creation);
+        fillContactForm(contactData, true);
         submitNewContact();
- //       goToHomePage();
     }
 
     public boolean isThereContact() {

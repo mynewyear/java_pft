@@ -14,7 +14,7 @@ public class ContactCreationTest extends  TestBase{
         app.getNavigationHelper().goToEditPage();
         app.getContactHelper().createContact(new ContactData("Nata", "LastName", "Nata",
                 "tester", "company", "Russia", "1234567890", "test1@gmail.com", "1990",
-                "so many notes", "test3"), true);
+                "so many notes", "test3"));
 
         app.getNavigationHelper().goToHomePage();
         //count
