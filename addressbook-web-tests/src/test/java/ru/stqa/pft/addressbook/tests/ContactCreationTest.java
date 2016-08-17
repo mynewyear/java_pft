@@ -14,12 +14,12 @@ public class ContactCreationTest extends  TestBase{
     @Test
     public void contactCreationTest() {
         //count before
- //       int before = app.getContactHelper().getContactCount();
+        //       int before = app.getContactHelper().getContactCount();
         List<ContactData> before = app.getContactHelper().getContactList();
 
         app.getNavigationHelper().goToEditPage();
-        int id = before.get(before.size()-1).getId();
-        ContactData contact = new ContactData(id + 1, "Nata", "LastName", "nik",
+//        int id = before.get(before.size()-1).getId();
+        ContactData contact = new ContactData("Nata", "LastName", "nik",
                 "tester", "company", "Russia", "1234567890", "test1@gmail.com", "1990",
                 "so many notes", "test3");
         app.getContactHelper().createContact(contact);

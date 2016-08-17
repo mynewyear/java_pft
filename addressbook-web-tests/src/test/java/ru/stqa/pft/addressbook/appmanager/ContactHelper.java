@@ -65,7 +65,7 @@ public class ContactHelper extends HelperBase {
 
 
     public void deleteSelectedContact() {
-       click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+        click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
     }
 
     //click popup button
@@ -84,11 +84,11 @@ public class ContactHelper extends HelperBase {
     }
 
     public void submitNewContact() {
-       click(By.xpath("//div[@id='content']/form/input[21]"));
+        click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
     public void initContactCreation() {
-       click(By.linkText("add new"));
+        click(By.linkText("add new"));
     }
 
 //    public void editFirstContact() {
@@ -120,9 +120,9 @@ public class ContactHelper extends HelperBase {
         List<WebElement> rows = wd.findElements(By.name("entry"));
 
         int i = 2;
-       for(WebElement element : rows){
+        for(WebElement element : rows){
 
-           int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("id"));
+            int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("id"));
             String firstName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
             String lastName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
             String address = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
