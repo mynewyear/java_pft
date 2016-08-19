@@ -1,53 +1,77 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
-    private int id;
-    private final String firstName;
-    private final String lastName;
-    private final String nick;
-    private final String title;
-    private final String company;
-    private final String address;
-    private final String phone;
-    private final String email;
-    private final String byear;
-    private final String notes;
+    private int id = Integer.MAX_VALUE;
+    private String firstName;
+    private String lastName;
+    private String nick;
+    private String title;
+    private String company;
+    private String address;
+    private String phone;
+    private String email;
+    private String byear;
+    private String notes;
     private String group;
 
-    public ContactData(int id, String firstName, String lastName, String nick, String title, String company, String address, String phone, String email, String byear, String notes, String group) {
+    public  ContactData withId(int id) {
         this.id = id;
+        return this;
+    }
+    public ContactData withName(String firstName) {
         this.firstName = firstName;
+        return this;
+    }
+
+    public ContactData withLastName(String lastName) {
         this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withNick(String nick) {
         this.nick = nick;
+        return this;
+    }
+
+    public ContactData withTitle(String title) {
         this.title = title;
+        return this;
+    }
+
+    public ContactData withCompany(String company) {
         this.company = company;
+        return this;
+    }
+
+    public ContactData withAddress(String address) {
         this.address = address;
+        return this;
+    }
+
+    public ContactData withPhone(String phone) {
         this.phone = phone;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public ContactData withByear(String byear) {
         this.byear = byear;
+        return this;
+    }
+
+    public ContactData withNotes(String notes) {
         this.notes = notes;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
         this.group = group;
+        return this;
     }
-
-    public ContactData(String firstName, String lastName, String nick, String title, String company, String address, String phone, String email, String byear, String notes, String group) {
-        this.id = Integer.MAX_VALUE;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.nick = nick;
-        this.title = title;
-        this.company = company;
-        this.address = address;
-        this.phone = phone;
-        this.email = email;
-        this.byear = byear;
-        this.notes = notes;
-        this.group = group;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getFirstName() {
         return firstName;
     }

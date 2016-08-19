@@ -149,10 +149,13 @@ public class ContactHelper extends HelperBase {
             String firstName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
             String lastName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
             String address = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
-            ContactData contact = new ContactData(id, lastName, firstName,  null,null,null, address, null,null,null,null,null);
+//            ContactData contact = new ContactData(id, lastName, firstName,  null,null,null, address, null,null,null,null,null);
             i++;
 
-            contacts.add(contact);
+            contacts.add(new ContactData().withName("Nata").withLastName("LastName")
+                    .withNick("nick").withTitle("tester").withCompany("company")
+                    .withAddress("Russia").withPhone("1234567890").withEmail("test1@gmail.com")
+                    .withByear("1990").withNotes("so many notes").withGroup("test1"));
         }
         return contacts;
     }

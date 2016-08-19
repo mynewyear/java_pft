@@ -17,11 +17,13 @@ public class ContactCreationTest extends  TestBase{
 
 
         app.goTo().goToEditPage();
-        ContactData contact = new ContactData("Nata", "LastName", "nik",
-                "tester", "company", "Russia", "1234567890", "test1@gmail.com", "1990",
-                "so many notes", "test1");
+        ContactData contact = new ContactData().withName("Nata").withLastName("LastName")
+                .withNick("nick").withTitle("tester").withCompany("company")
+                .withAddress("Russia").withPhone("1234567890").withEmail("test1@gmail.com")
+                .withByear("1990").withNotes("so many notes").withGroup("test1");
+
         app.contact().create(contact);
- //       app.goTo().homePage();
+
         //count
         List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1 );

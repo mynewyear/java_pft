@@ -7,6 +7,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -88,6 +90,17 @@ public class GroupsHelper extends HelperBase {
         for(WebElement element : elements){
           int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
           String name = element.getText();
+            groups.add(new GroupData().withId(id).withName(name));
+        }
+        return groups;
+    }
+
+    public List<GroupData> all() {
+        Set<GroupData> groups = new HashSet<GroupData>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        for(WebElement element : elements){
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            String name = element.getText();
             groups.add(new GroupData().withId(id).withName(name));
         }
         return groups;
