@@ -1,36 +1,39 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
-/**
- * Created by IEUser on 8/1/2016.
- */
 public class ContactModificationTests extends TestBase {
+
+   @BeforeMethod
+   public void ensurePreconditions() {
+      app.goTo().homePage();
+      if (app.contact().list().size() == 0) {
+         app.contact().create(new ContactData("Nata", "LastName", "Nata",
+                 "tester", "company", "Russia", "1234567890", "test1@gmail.com", "1990",
+                 "so many notes", "test3"));
+      }
+   }
+
     @Test
      public void contactModificationTests() {
-        app.getNavigationHelper().goToHomePage();
-        if(!app.getContactHelper().isThereContact()){
-            app.getContactHelper().createContact(new ContactData("Nata", "LastName", "Nata",
-                    "tester", "company", "Russia", "1234567890", "test1@gmail.com", "1990",
-                    "so many notes", "test3"));
-        }
-        List<ContactData> before = app.getContactHelper().getContactList();
-        app.getContactHelper().initContractModification(before.size() - 1);
-        ContactData contact = new ContactData(before.get(before.size() - 1).getId(), "firstName1", "newLastName",
-                "new nick", "newTitle", "newCompany", "world", "0987654321", "newEmail@test.com", "1989",
-                "more notes than last time",null);
-        app.getContactHelper().fillContactForm(contact, false);
-        app.getContactHelper().updateContact();
-        app.getNavigationHelper().goToHomePage();
+         //count before test
+        List<ContactData> before = app.contact().list();
+
+       int index = before.size() - 1;
+       ContactData contact = new ContactData(before.get(index).getId(), "firstName1", "newLastName",
+               "new nick", "newTitle", "newCompany", "world", "0987654321", "newEmail@test.com", "1989",
+               "more notes than last time",null);
+
+       app.contact().modify(index, contact);
+
         //count
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(before.size() -1 );
@@ -41,5 +44,4 @@ public class ContactModificationTests extends TestBase {
         after.sort(byId);
         Assert.assertEquals(before, after);
     }
-
 }

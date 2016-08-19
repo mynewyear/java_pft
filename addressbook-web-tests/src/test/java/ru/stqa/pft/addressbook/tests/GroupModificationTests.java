@@ -1,6 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
@@ -11,31 +12,37 @@ import java.util.*;
  */
 public class GroupModificationTests extends TestBase {
 
+    @BeforeMethod
+    public void ensurePreconditions(){
+        //go to group page
+        app.goTo().groupPage();
+        //check
+        if(app.groups().list().size() == 0){
+            app.groups().create(new GroupData().withName("test3"));
+        }
+    }
+
     @Test
     public void testGroupModification(){
-        //go to group page
-        app.getNavigationHelper().goToGroupPage();
-        if(!app.getGroupsHelper().isThereGroup()){
-            app.getGroupsHelper().createGroup(new GroupData("test1", null,null));
-        }
-        //count before
-        List<GroupData> before = app.getGroupsHelper().getGroupList();
-        app.getGroupsHelper().selectGroup(before.size() - 1);
-        app.getGroupsHelper().innitGroupModification();
 
-        GroupData group = new GroupData(before.get(before.size() -1).getId(), "test3",null,null);
-        app.getGroupsHelper().fillGroupForm(group);
-        app.getGroupsHelper().submitGroupModification();
-        app.getNavigationHelper().goToGroupPage();
+        //count before test
+        List<GroupData> before = app.groups().list();
+        int index = before.size() - 1;
+        GroupData group = new GroupData().withId(before.get(index).getId()).withName("test3").withHeader("test2").withFooter("more than test");
+
+        app.groups().modify(group, index);
+        app.goTo().groupPage();
         //count
-        List<GroupData> after = app.getGroupsHelper().getGroupList();
+        List<GroupData> after = app.groups().list();
         Assert.assertEquals(after.size(), before.size());
 
-        before.remove(before.size() -1 );
+        before.remove(index);
         before.add(group);
         Comparator<? super GroupData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
         before.sort(byId);
         after.sort(byId);
         Assert.assertEquals(before, after);
     }
+
+
 }

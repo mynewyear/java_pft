@@ -60,23 +60,6 @@ public class ContactData {
         return nick;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String toString() {
-        return "ContactData{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                '}';
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,6 +79,23 @@ public class ContactData {
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactData{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCompany() {
+        return company;
     }
 
     public String getAddress() {

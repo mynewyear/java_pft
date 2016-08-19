@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
@@ -14,19 +13,17 @@ public class ContactCreationTest extends  TestBase{
     @Test
     public void contactCreationTest() {
         //count before
-        //       int before = app.getContactHelper().getContactCount();
-        List<ContactData> before = app.getContactHelper().getContactList();
+        List<ContactData> before = app.contact().list();
 
-        app.getNavigationHelper().goToEditPage();
-//        int id = before.get(before.size()-1).getId();
+
+        app.goTo().goToEditPage();
         ContactData contact = new ContactData("Nata", "LastName", "nik",
                 "tester", "company", "Russia", "1234567890", "test1@gmail.com", "1990",
-                "so many notes", "test3");
-        app.getContactHelper().createContact(contact);
-        app.getNavigationHelper().goToHomePage();
-
+                "so many notes", "test1");
+        app.contact().create(contact);
+ //       app.goTo().homePage();
         //count
-        List<ContactData> after = app.getContactHelper().getContactList();
+        List<ContactData> after = app.contact().list();
         Assert.assertEquals(after.size(), before.size() + 1 );
 
         before.add(contact);

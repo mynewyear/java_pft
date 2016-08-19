@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 
 public class GroupCreationTest extends TestBase {
@@ -15,14 +14,14 @@ public class GroupCreationTest extends TestBase {
     public void testGroupCreation() {
 
         //go to group page
-        app.getNavigationHelper().goToGroupPage();
+        app.goTo().groupPage();
         //count before
-        List<GroupData> before = app.getGroupsHelper().getGroupList();
+        List<GroupData> before = app.groups().list();
         //test
-        GroupData group = new GroupData("test1", "test2", "test3");
-        app.getGroupsHelper().createGroup(group);
+        GroupData group = new GroupData().withName("test1").withHeader("test2").withFooter("test3");
+        app.groups().create(group);
         //count
-        List<GroupData> after = app.getGroupsHelper().getGroupList();
+        List<GroupData> after = app.groups().list();
         Assert.assertEquals(after.size(), before.size() + 1 );
 
 //        group.setId(after.stream().max ((o1, o2)-> Integer.compare(o1.getId(), o2.getId())).get().getId());
