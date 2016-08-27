@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +12,9 @@ import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
-
+    public int count() {
+        return wd.findElements(By.name("entry")).size();
+    }
 
     public ContactHelper(WebDriver wd) {
         super(wd);
@@ -124,23 +127,28 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.xpath("//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
-    public Set<ContactData> all() {
-        Set<ContactData> contacts = new HashSet<ContactData>();
-        List<WebElement> rows = wd.findElements(By.name("entry"));
+    public  Contacts contacts = null;
 
-        int i = 2;
-        for(WebElement element : rows){
+    public Contacts all() {
+            if (contacts != null) {
+                return new Contacts(contacts);
+            } else {
+                contacts = new Contacts();
+                List<WebElement> rows = wd.findElements(By.name("entry"));
 
-            int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("id"));
-            String firstName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
-            String lastName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
-            String address = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
+                int i = 2;
+                for (WebElement element : rows) {
 
-            contacts.add(new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address));
-            i++;
-        }
-        return contacts;
+                    int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("id"));
+                    String firstName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
+                    String lastName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
+                    String address = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
+
+                    ContactData contact = new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address);
+                    contacts.add(contact);
+                    i++;
+                }
+                return contacts;
+            }
     }
-
-
 }

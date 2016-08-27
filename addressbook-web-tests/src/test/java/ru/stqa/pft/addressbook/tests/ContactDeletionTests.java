@@ -1,9 +1,12 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.Set;
 
@@ -19,18 +22,18 @@ public class ContactDeletionTests extends TestBase{
                     .withByear("1990").withNotes("so many notes"));
         }
     }
-    
+
     @Test
     public void contactDeletionTests() {
         //count
-        Set<ContactData> before = app.contacts().all();
+        Contacts before = app.contacts().all();
         ContactData deletedContact = before.iterator().next();
         app.contacts().delete(deletedContact);
         //count
-        Set<ContactData> after = app.contacts().all();
-        Assert.assertEquals(after.size(), before.size() - 1 );
+        Contacts after = app.contacts().all();
+        Assert.assertEquals(app.contacts().count(), before.size() - 1 );
+        //       Assert.assertEquals(after.size(), before.size() - 1);
 
-        before.remove(deletedContact);
-        Assert.assertEquals(after, before);
+        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(deletedContact)));
     }
 }
