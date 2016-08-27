@@ -111,7 +111,6 @@ public class ContactHelper extends HelperBase {
         selectContactById(contact.getId());
         deleteSelectedContact();
         deleteSelectedContactPopup();
-        goHomePage();
     }
 
     public void modify(ContactData contact) {

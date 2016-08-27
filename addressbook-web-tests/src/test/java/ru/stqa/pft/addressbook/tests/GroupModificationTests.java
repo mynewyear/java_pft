@@ -12,6 +12,7 @@ import java.util.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by IEUser on 8/1/2016.
@@ -42,7 +43,7 @@ public class GroupModificationTests extends TestBase {
         app.goTo().groupPage();
         //count
         Groups after = app.group().all();
-        assertThat(after.size(), equalTo(before.size()));
+        assertEquals(after.size(), before.size());
 
         assertThat(after, equalTo(before.withOut(modifiedGroup).withAdded(group)));
     }
