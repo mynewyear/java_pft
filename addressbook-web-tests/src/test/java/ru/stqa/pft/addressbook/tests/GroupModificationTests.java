@@ -10,6 +10,9 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.*;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 /**
  * Created by IEUser on 8/1/2016.
  */
@@ -39,12 +42,8 @@ public class GroupModificationTests extends TestBase {
         app.goTo().groupPage();
         //count
         Groups after = app.group().all();
-        Assert.assertEquals(after.size(), before.size());
-//
-//        before.remove(modifiedGroup);
-//        before.add(group);
-//        Assert.assertEquals(before, after);
+        assertThat(after.size(), equalTo(before.size()));
 
-        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(modifiedGroup).withAdded(group)));
+        assertThat(after, equalTo(before.withOut(modifiedGroup).withAdded(group)));
     }
 }

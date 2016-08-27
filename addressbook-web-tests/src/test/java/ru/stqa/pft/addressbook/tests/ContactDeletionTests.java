@@ -10,6 +10,9 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactDeletionTests extends TestBase{
 
     @BeforeMethod
@@ -29,11 +32,12 @@ public class ContactDeletionTests extends TestBase{
         Contacts before = app.contacts().all();
         ContactData deletedContact = before.iterator().next();
         app.contacts().delete(deletedContact);
+ //       app.goTo().homePage();
         //count
         Contacts after = app.contacts().all();
-        Assert.assertEquals(app.contacts().count(), before.size() - 1 );
-        //       Assert.assertEquals(after.size(), before.size() - 1);
+ //       Assert.assertEquals(app.contacts().count(), before.size() - 1 );
+        Assert.assertEquals(app.contacts().count(), before.size() - 1);
 
-        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(deletedContact)));
+        assertThat(after, equalTo(before.withOut(deletedContact)));
     }
 }

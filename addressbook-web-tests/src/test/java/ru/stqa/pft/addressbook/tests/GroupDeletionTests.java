@@ -12,6 +12,9 @@ import ru.stqa.pft.addressbook.model.Groups;
 import java.util.Set;
 import java.util.regex.Matcher;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class GroupDeletionTests extends TestBase {
 
     @BeforeMethod
@@ -34,7 +37,7 @@ public class GroupDeletionTests extends TestBase {
         app.group().delete(deletedGroup);
         //count
         Groups after = app.group().all();
-        Assert.assertEquals(after.size(), before.size() - 1 );
-        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(deletedGroup)));
+        assertThat(after.size(), equalTo(before.size() - 1 ));
+        assertThat(after, equalTo(before.withOut(deletedGroup)));
     }
 }

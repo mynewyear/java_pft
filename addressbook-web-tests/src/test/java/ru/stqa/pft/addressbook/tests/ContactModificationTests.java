@@ -10,6 +10,9 @@ import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class ContactModificationTests extends TestBase {
 
     @BeforeMethod
@@ -35,9 +38,9 @@ public class ContactModificationTests extends TestBase {
             app.goTo().homePage();
             //count
             Contacts after = app.contacts().all();
-            Assert.assertEquals(after.size(), before.size());
+            assertThat(after.size(), equalTo(before.size()));
 
-            MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withOut(modifiedContact).withAdded(contact)));
+            assertThat(after, equalTo(before.withOut(modifiedContact).withAdded(contact)));
 
         }
 }

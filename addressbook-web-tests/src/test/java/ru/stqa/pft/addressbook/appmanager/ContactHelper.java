@@ -105,7 +105,6 @@ public class ContactHelper extends HelperBase {
         initContactCreation();
         fillContactForm(contactData, true);
         submitNewContact();
-        goHomePage();
     }
 
     public void delete(ContactData contact) {
@@ -113,42 +112,40 @@ public class ContactHelper extends HelperBase {
         deleteSelectedContact();
         deleteSelectedContactPopup();
         goHomePage();
-
     }
 
     public void modify(ContactData contact) {
         initContactModificationById(contact.getId());
         fillContactForm(contact, false);
         updateContact();
-        goHomePage();
     }
 
     public boolean isThereContact() {
         return isElementPresent(By.xpath("//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
-    public  Contacts contacts = null;
+    public Contacts contacts = null;
 
     public Contacts all() {
-            if (contacts != null) {
-                return new Contacts(contacts);
-            } else {
-                contacts = new Contacts();
-                List<WebElement> rows = wd.findElements(By.name("entry"));
+        if (contacts != null) {
+            return new Contacts(contacts);
+        } else {
+            contacts = new Contacts();
+            List<WebElement> rows = wd.findElements(By.name("entry"));
 
-                int i = 2;
-                for (WebElement element : rows) {
+            int i = 2;
+            for (WebElement element : rows) {
 
-                    int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("id"));
-                    String firstName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
-                    String lastName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
-                    String address = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
+                int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("id"));
+                String firstName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[3]")).getText();
+                String lastName = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[2]")).getText();
+                String address = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
 
-                    ContactData contact = new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address);
-                    contacts.add(contact);
-                    i++;
-                }
-                return contacts;
+//                ContactData contact = new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address);
+                contacts.add(new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address));
+                i++;
             }
+            return contacts;
+        }
     }
 }
