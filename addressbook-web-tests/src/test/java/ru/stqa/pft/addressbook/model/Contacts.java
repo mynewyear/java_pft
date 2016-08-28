@@ -5,9 +5,6 @@ import com.google.common.collect.ForwardingSet;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by IEUser on 8/26/2016.
- */
 public class Contacts extends ForwardingSet<ContactData> {
 
     private Set<ContactData> delegate;

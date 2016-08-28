@@ -8,9 +8,6 @@ import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.*;
 
-/**
- * Created by IEUser on 7/31/2016.
- */
 public class GroupsHelper extends HelperBase {
 
     public GroupsHelper(WebDriver wd) {

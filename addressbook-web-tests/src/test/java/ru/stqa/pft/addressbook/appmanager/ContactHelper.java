@@ -123,13 +123,13 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.xpath("//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
-    public Contacts contacts = null;
+//    public Contacts contacts = null;
 
     public Contacts all() {
-        if (contacts != null) {
-            return new Contacts(contacts);
-        } else {
-            contacts = new Contacts();
+//        if (contacts != null) {
+//            return new Contacts(contacts);
+//        } else {
+           Contacts contacts = new Contacts();
             List<WebElement> rows = wd.findElements(By.name("entry"));
 
             int i = 2;
@@ -142,9 +142,9 @@ public class ContactHelper extends HelperBase {
 
 //                ContactData contact = new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address);
                 contacts.add(new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address));
+                System.out.println(contacts.size());
                 i++;
             }
             return contacts;
         }
     }
-}
