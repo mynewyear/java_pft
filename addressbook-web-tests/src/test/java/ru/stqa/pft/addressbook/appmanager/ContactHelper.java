@@ -142,7 +142,7 @@ public class ContactHelper extends HelperBase {
 
 //                ContactData contact = new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address);
                 contacts.add(new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address));
-                System.out.println(contacts.size());
+//                System.out.println(contacts.size());
                 i++;
             }
             return contacts;
