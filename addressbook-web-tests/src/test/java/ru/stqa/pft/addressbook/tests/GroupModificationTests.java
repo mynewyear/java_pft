@@ -23,19 +23,13 @@ public class GroupModificationTests extends TestBase {
     @Test
     public void testGroupModification(){
 
-
-        //count before test
         Groups before = app.group().all();
         GroupData modifiedGroup = before.iterator().next();
-
         GroupData group = new GroupData().withId(modifiedGroup.getId()).withName("test3").withFooter("more than test");
-
         app.group().modify(group);
         app.goTo().groupPage();
-        //count
+        assertEquals(app.group().count(), before.size());
         Groups after = app.group().all();
-        assertEquals(after.size(), before.size());
-
         assertThat(after, equalTo(before.withOut(modifiedGroup).withAdded(group)));
     }
 }

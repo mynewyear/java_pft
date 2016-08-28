@@ -13,7 +13,6 @@ public class ContactCreationTest extends  TestBase{
     public void contactCreationTest() {
 
             app.goTo().homePage();
-            //count before
             Contacts before = app.contacts().all();
             ContactData contact = new ContactData().withName("Nata").withLastName("LastName")
                     .withNick("nick").withTitle("tester").withCompany("company")
@@ -21,12 +20,9 @@ public class ContactCreationTest extends  TestBase{
                     .withByear("1990").withNotes("so many notes");
             app.contacts().create(contact);
             app.goTo().homePage();
-            //count
-            Contacts after = app.contacts().all();
             assertThat(app.contacts().count(), equalTo(before.size() + 1));
-
+            Contacts after = app.contacts().all();
             assertThat(after, equalTo(
                     before.withAdded(contact.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
         }
-
 }
