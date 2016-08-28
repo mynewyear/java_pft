@@ -61,7 +61,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void goHomePage() {
-        if(isElementPresent(By.id("maintable"))){
+        if (isElementPresent(By.id("maintable"))) {
             return;
         }
         click(By.linkText("home"));
@@ -72,7 +72,7 @@ public class ContactHelper extends HelperBase {
     }
 
     //click popup button
-    public void deleteSelectedContactPopup(){
+    public void deleteSelectedContactPopup() {
         alertAccept();
     }
 
@@ -105,31 +105,34 @@ public class ContactHelper extends HelperBase {
         initContactCreation();
         fillContactForm(contactData, true);
         submitNewContact();
+        contactCashe = null;
     }
 
     public void delete(ContactData contact) {
         selectContactById(contact.getId());
         deleteSelectedContact();
         deleteSelectedContactPopup();
+        contactCashe = null;
     }
 
     public void modify(ContactData contact) {
         initContactModificationById(contact.getId());
         fillContactForm(contact, false);
         updateContact();
+        contactCashe = null;
     }
 
     public boolean isThereContact() {
         return isElementPresent(By.xpath("//*[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
-//    public Contacts contacts = null;
+    private Contacts contactCashe = null;
 
     public Contacts all() {
-//        if (contacts != null) {
-//            return new Contacts(contacts);
-//        } else {
-           Contacts contacts = new Contacts();
+        if (contactCashe != null) {
+            return new Contacts(contactCashe);
+        } else {
+            contactCashe = new Contacts();
             List<WebElement> rows = wd.findElements(By.name("entry"));
 
             int i = 2;
@@ -141,10 +144,11 @@ public class ContactHelper extends HelperBase {
                 String address = element.findElement(By.xpath("//*[@id='maintable']/tbody/tr[" + i + "]/td[4]")).getText();
 
 //                ContactData contact = new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address);
-                contacts.add(new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address));
+                contactCashe.add(new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address));
 //                System.out.println(contacts.size());
                 i++;
             }
-            return contacts;
+            return new Contacts(contactCashe);
         }
     }
+}

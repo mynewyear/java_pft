@@ -29,7 +29,6 @@ public class ContactDeletionTests extends TestBase{
     public void contactDeletionTests() {
         //count
         Contacts before = app.contacts().all();
-        System.out.println(before);
         ContactData deletedContact = before.iterator().next();
         app.contacts().delete(deletedContact);
         app.goTo().homePage();
