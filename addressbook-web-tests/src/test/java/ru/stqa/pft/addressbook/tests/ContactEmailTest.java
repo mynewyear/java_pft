@@ -9,9 +9,6 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-/**
- * Created by IEUser on 8/28/2016.
- */
 public class ContactEmailTest extends  TestBase{
 
         @Test

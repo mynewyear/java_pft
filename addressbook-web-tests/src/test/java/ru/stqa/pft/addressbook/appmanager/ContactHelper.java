@@ -152,6 +152,18 @@ public class ContactHelper extends HelperBase {
                 .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
     }
 
+    public ContactData infoContactInfoPage(ContactData contact)  {
+                 clickImageContactById(contact.getId());
+                 String allInformation = wd.findElement(By.id("content")).getText();
+                 wd.navigate().back();
+                return new ContactData().withAllInformation(allInformation);
+                }
+
+    private void clickImageContactById(int id) {
+        wd.findElement(By.cssSelector(String.format("a[href ='view.php?id=%s']", id))).click();
+    }
+
+
     public void initContactModificationById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href ='edit.php?id=%s']", id))).click();
     }

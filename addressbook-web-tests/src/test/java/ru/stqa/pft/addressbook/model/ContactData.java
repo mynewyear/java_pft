@@ -20,6 +20,16 @@ private  String allPhones;
     private String notes;
 //    private String group;
 
+    private String allInformation;
+
+    public String getAllInformation() {
+        return allInformation;
+    }
+
+    public ContactData withAllInformation(String allInformation) {
+        this.allInformation = allInformation;
+        return this;
+    }
 
     public String getAllEmails() {
         return allEmails;
