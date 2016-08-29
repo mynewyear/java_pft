@@ -9,10 +9,49 @@ public class ContactData {
     private String company;
     private String address;
     private String phone;
+    private String mobile;
+    private String workPhone;
+private  String allPhones;
+    private String allEmails;
     private String email;
+    private String email2;
+    private String email3;
     private String byear;
     private String notes;
 //    private String group;
+
+
+    public String getAllEmails() {
+        return allEmails;
+    }
+
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return  this;
+    }
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return  this;
+    }
+
+    public ContactData withWorkPhone(String workPhone) {
+        this.workPhone = workPhone;
+        return this;
+    }
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
 
     public  ContactData withId(int id) {
         this.id = id;
@@ -50,6 +89,11 @@ public class ContactData {
 
     public ContactData withPhone(String phone) {
         this.phone = phone;
+        return this;
+    }
+
+    public ContactData withMobile(String mobile) {
+        this.mobile = mobile;
         return this;
     }
 
@@ -99,9 +143,23 @@ public class ContactData {
     public String getPhone() {
         return phone;
     }
+    public String getMobile() {
+        return mobile;
+    }
+    public String getWorkPhone() {
+        return workPhone;
+    }
 
     public String getEmail() {
         return email;
+    }
+
+    public String getEmail2() {
+        return email2;
+    }
+
+    public String getEmail3() {
+        return email3;
     }
 
     public String getByear() {
@@ -148,6 +206,8 @@ public class ContactData {
     public int getId() {
         return id;
     }
+
+
 
 
     //   public String getGroup() {
