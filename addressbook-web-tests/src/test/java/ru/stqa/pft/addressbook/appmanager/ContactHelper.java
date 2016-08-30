@@ -134,7 +134,7 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public  ContactData infoFromEditForm(ContactData contact){
+    public ContactData infoFromEditForm(ContactData contact) {
         initContactModificationById(contact.getId());
         String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
@@ -152,12 +152,24 @@ public class ContactHelper extends HelperBase {
                 .withEmail(email).withEmail2(email2).withEmail3(email3).withAddress(address);
     }
 
-    public ContactData infoContactInfoPage(ContactData contact)  {
-                 clickImageContactById(contact.getId());
-                 String allInformation = wd.findElement(By.id("content")).getText();
-                 wd.navigate().back();
-                return new ContactData().withAllInformation(allInformation);
-                }
+    public ContactData infoFromContactDetailsPage(ContactData contact) {
+        clickImageContactById(contact.getId());
+        String allInformation = wd.findElement(By.id("content")).getText();
+        String firstName = allInformation.split("\\s")[0];
+        String lastName = allInformation.split("\\s")[1];
+        String address = allInformation.split("\\n")[1];
+        String phoneHome = allInformation.split("\\n")[3].replace("H: ", "");
+        String phoneMobile = allInformation.split("\\n")[4].replace("M: ", "");
+        String phoneWork = allInformation.split("\\n")[5].replace("W: ", "");
+        String email = wd.findElement(By.xpath("//*[@id='content']/a[1]")).getText();
+        String email2 = wd.findElement(By.xpath("//*[@id='content']/a[3]")).getText();
+        String email3 = wd.findElement(By.xpath("//*[@id='content']/a[5]")).getText();
+
+        wd.navigate().back();
+        return new ContactData().withId(contact.getId()).withName(firstName).withLastName(lastName).withAddress(address)
+                .withPhone(phoneHome).withMobile(phoneMobile).withWorkPhone(phoneWork)
+                .withEmail(email).withEmail2(email2).withEmail3(email3);
+    }
 
     private void clickImageContactById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href ='view.php?id=%s']", id))).click();
