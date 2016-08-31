@@ -23,7 +23,6 @@ public class ContactEmailTest extends  TestBase{
 
         @Test
         public void contactEmailTest() {
-
             app.goTo().homePage();
             ContactData contact = app.contacts().all().iterator().next();
             ContactData contactInfoEditForm = app.contacts().infoFromEditForm(contact);
