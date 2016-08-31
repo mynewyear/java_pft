@@ -25,38 +25,39 @@ public class ContactCreationTest extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validContacts() throws IOException {
-        List<Object[]> list = new ArrayList<Object[]>();
- //       File photo = new File("src/test/resources/stru.png");
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
-        String line = reader.readLine();
-        String xml = "";
-        while (line != null) {
-            xml += line;
-            line = reader.readLine();
+        //       List<Object[]> list = new ArrayList<Object[]>();
+        //       File photo = new File("src/test/resources/stru.png");
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")))) {
+            String line = reader.readLine();
+            String xml = "";
+            while (line != null) {
+                xml += line;
+                line = reader.readLine();
+            }
+            XStream xstream = new XStream();
+            xstream.processAnnotations(ContactData.class);
+            List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
+            return contacts.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
         }
-        XStream xstream = new XStream();
-        xstream.processAnnotations(ContactData.class);
-        List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
-        return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
     }
 
     @DataProvider
     public Iterator<Object[]> validContactsFromJson() throws IOException {
-        List<Object[]> list = new ArrayList<>();
-        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
-        String line = reader.readLine();
-        String json = "";
-        while (line != null) {
-            json += line;
-            line = reader.readLine();
+        //       List<Object[]> list = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")))) {
+            String line = reader.readLine();
+            String json = "";
+            while (line != null) {
+                json += line;
+                line = reader.readLine();
+            }
+            Gson gson = new Gson();
+            List<ContactData> groups = gson.fromJson(json, new TypeToken<List<ContactData>>() {
+            }.getType());  //List<GroupData>.class
+            return groups.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
         }
-        Gson gson = new Gson();
-        List<ContactData> groups =  gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());  //List<GroupData>.class
-        return groups.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
     }
-//
 
-    
     @Test(dataProvider = "validContactsFromJson")
     public void contactCreationTest(ContactData contact) {
 
