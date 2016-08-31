@@ -32,6 +32,8 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
+        attach(By.name("photo"), contactData.getPhoto());
+
         //       addBirthday
         if (!elementSelected(By.xpath("//div[@id='content']/form/select[1]//option[1]"))) {
             click(By.xpath("//div[@id='content']/form/select[1]//option[1]"));
