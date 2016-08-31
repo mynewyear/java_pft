@@ -54,7 +54,9 @@ public class ContactCreationTest extends TestBase {
         List<ContactData> groups =  gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());  //List<GroupData>.class
         return groups.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
     }
+//
 
+    
     @Test(dataProvider = "validContactsFromJson")
     public void contactCreationTest(ContactData contact) {
 
