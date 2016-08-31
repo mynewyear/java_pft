@@ -58,12 +58,12 @@ public class ContactDataGenerator {
             contacts.add(new ContactData().withName(String.format("name %s", i))
                     .withLastName(String.format("lastName %s", i))
                     .withAddress(String.format("address %s", i))
-                    .withPhone(String.format("phone %s", i))
-                    .withMobile(String.format("mobile %s", i))
-                    .withWorkPhone(String.format("workPhone %s", i))
-                    .withEmail(String.format("email %s", i))
-                    .withEmail2(String.format("email2 %s", i))
-                    .withEmail3(String.format("email3 %s", i))
+                    .withPhone(String.format("1234567 %s", i))
+                    .withMobile(String.format("23345678 %s", i))
+                    .withWorkPhone(String.format("3456789 %s", i))
+                    .withEmail(String.format("email@test.com %s", i))
+                    .withEmail2(String.format("email2@test.com %s", i))
+                    .withEmail3(String.format("email3@test.com %s", i))
 
             );
         }
