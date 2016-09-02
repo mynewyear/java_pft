@@ -32,7 +32,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
-        attach(By.name("photo"), contactData.getPhoto());
+      //  attach(By.name("photo"), contactData.getPhoto());
 
         //       addBirthday
         if (!elementSelected(By.xpath("//div[@id='content']/form/select[1]//option[1]"))) {
@@ -66,8 +66,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
-
+        wd.findElement(By.cssSelector("input[id ='" + id + "']")).click();
     }
 
 //    public void initContactModification(int index) {
@@ -127,9 +126,10 @@ public class ContactHelper extends HelperBase {
                 String address = cells.get(3).getText();
                 String allEmails = cells.get(4).getText();
                 String allPhones = cells.get(5).getText();
-                contactCashe.add(new ContactData().withId(id).withName(firstName).withLastName(lastName).withAddress(address)
-                        .withAllEmails(allEmails)
+                contactCashe.add(new ContactData().withId(id).withName(firstName).withLastName(lastName)
                         .withAllPhones(allPhones)
+                        .withAllEmails(allEmails)
+                        .withAddress(address)
                 );
             }
             return new Contacts(contactCashe);
