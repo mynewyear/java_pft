@@ -1,4 +1,4 @@
-Nata 0;lastName 0;address 0;1234567 0;23345678 0;3456789 0;email@test.com 0;email2@test.com 0;email3@test.com 0
-Ann 1;lastName 1;address 1;1234567 1;23345678 1;3456789 1;email@test.com 1;email2@test.com 1;email3@test.com 1
-Lie 2;lastName 2;address 2;1234567 2;23345678 2;3456789 2;email@test.com 2;email2@test.com 2;email3@test.com 2
+Nata ;lastName ;address;1234567 0;23345678 0;3456789 0;email@test.com;email2@test.com;email3@test.com
+Ann ;lastName ;address;1234567 1;23345678 1;3456789 1;email@test.com;email2@test.com;email3@test.com
+Lie ;lastName ;address;1234567 2;23345678 2;3456789 2;email@test.com;email2@test.com;email3@test.com
 
