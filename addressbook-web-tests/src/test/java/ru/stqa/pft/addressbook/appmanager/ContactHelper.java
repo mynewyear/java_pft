@@ -194,6 +194,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("add"));
     }
 
+
     public void removeFromGroup() {
         click(By.cssSelector("input[name='remove']"));
     }
@@ -201,5 +202,11 @@ public class ContactHelper extends HelperBase {
     public void filterGroupsById(int id) {
         click(By.cssSelector("#right"));
         click(By.cssSelector("#right>select>option[value='" + id + "']"));
+    }
+
+    public void selectAllgroups() {
+        click(By.cssSelector("#right"));
+        click(By.cssSelector("#right>select>option[value='[none]']"));
+
     }
 }

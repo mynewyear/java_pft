@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -28,6 +29,12 @@ public class ContactAddedToGroupTest extends TestBase {
                     .withAddress("Russia").withPhone("1234567890").withMobile("22-2").withWorkPhone("3(333)33").withEmail("test1@gmail.com")
                     .withEmail2("123@fgg.cv").withEmail3("34567"));
         }
+    }
+
+    @AfterMethod
+    public  void allGroupVisible(){
+        app.goTo().homePage();
+        app.contacts().selectAllgroups();
     }
 
     @Test
@@ -70,10 +77,13 @@ public class ContactAddedToGroupTest extends TestBase {
 
         ContactData after = app.db().contactById(selectedContact.getId()).iterator().next();
         Groups groupsContactAfter = after.getGroups();
+
         assertThat(groupsContactAfter, equalTo(
                 groupsSelectedContact.withAdded(selectedGroup)));
 
     }
+
+
 }
 
 
