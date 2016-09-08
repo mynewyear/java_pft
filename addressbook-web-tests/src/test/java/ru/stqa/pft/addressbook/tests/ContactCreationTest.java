@@ -77,8 +77,9 @@ public class ContactCreationTest extends TestBase {
         Groups groups = app.db().groups();
         Contacts before = app.db().contacts();
         File photo = new File("src/test/resources/stru.png");
-        ContactData newContact = new ContactData().withName("Name").withLastName("lastName")
-                .withAddress("World").withPhone("1234567").withEmail3("test2test.com").withPhoto(photo)
+        ContactData newContact = new ContactData().withName("Nata").withLastName("LastName")
+                .withAddress("Russia").withPhone("1234567890").withMobile("22-2").withWorkPhone("3(333)33").withEmail("test1@gmail.com")
+                .withEmail2("123@fgg.cv").withEmail3("34567")//.withPhoto(photo)
                 .inGroup(groups.iterator().next());
         app.goTo().homePage();
         app.contacts().create(newContact);

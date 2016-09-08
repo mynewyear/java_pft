@@ -34,7 +34,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("email"), contactData.getEmail());
         type(By.name("email2"), contactData.getEmail2());
         type(By.name("email3"), contactData.getEmail3());
-        //  attach(By.name("photo"), contactData.getPhoto());
+        attach(By.name("photo"), contactData.getPhoto());
 
         //       addBirthday
         if (!elementSelected(By.xpath("//div[@id='content']/form/select[1]//option[1]"))) {
@@ -186,5 +186,20 @@ public class ContactHelper extends HelperBase {
 
     public void initContactModificationById(int id) {
         wd.findElement(By.cssSelector(String.format("a[href ='edit.php?id=%s']", id))).click();
+    }
+
+    public void addToGroupById(int id) {
+        click(By.cssSelector("select[name='to_group']"));
+        click(By.cssSelector(".right>select>option[value='" + id + "']"));
+        click(By.name("add"));
+    }
+
+    public void removeFromGroup() {
+        click(By.cssSelector("input[name='remove']"));
+    }
+
+    public void filterGroupsById(int id) {
+        click(By.cssSelector("#right"));
+        click(By.cssSelector("#right>select>option[value='" + id + "']"));
     }
 }
