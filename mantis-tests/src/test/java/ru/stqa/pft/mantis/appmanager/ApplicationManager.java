@@ -13,14 +13,14 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
-
-
     private final Properties properties;
     private WebDriver wd;
-    private RegistrationHelper registrationHelper;
 
     private String browser;
+    private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
+    private MailHelper mailHelper;
+
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -33,12 +33,10 @@ public class ApplicationManager {
     }
 
     public void stop() {
-        wd.quit();
         if (wd != null) {
             wd.quit();
         }
     }
-
 
     public HttpSession newSession() {
         return new HttpSession(this);
@@ -54,9 +52,9 @@ public class ApplicationManager {
         }
         return registrationHelper;
     }
-    
-    public FtpHelper ftp(){
-        if(ftp == null) {
+
+    public FtpHelper ftp() {
+        if (ftp == null) {
             ftp = new FtpHelper(this);
         }
         return ftp;
@@ -75,5 +73,12 @@ public class ApplicationManager {
             wd.get(properties.getProperty("web.baseUrl"));
         }
         return wd;
+    }
+
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
     }
 }
