@@ -12,7 +12,7 @@ public class TestBase {
 
 
     protected static final ApplicationManager app
-            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+            = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
 
     @BeforeSuite
     public void setUp() throws Exception {

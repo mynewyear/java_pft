@@ -16,10 +16,7 @@ public class LoginTests extends TestBase {
         app.mail().start();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void stopMalServer(){
-        app.mail().stop();
-    }
+
 
     @Test
     public void testLogin() throws IOException {
@@ -27,5 +24,8 @@ public class LoginTests extends TestBase {
         assertTrue(session.login("administrator", "root"));
         assertTrue(session.isLoggedInAs("administrator"));
     }
-
+    @AfterMethod(alwaysRun = true)
+    public void stopMalServer(){
+        app.mail().stop();
+    }
 }

@@ -24,10 +24,7 @@ public class RegistrationTest extends TestBase {
         app.mail().start();
     }
 
-    @AfterMethod(alwaysRun = true)
-    public void stopMailServer() {
-        app.mail().stop();
-    }
+
 
     @Test
     public void testRegistration() throws IOException, MessagingException {
@@ -50,5 +47,9 @@ public class RegistrationTest extends TestBase {
         MailMessage mailMessage = mailMessages.stream().filter((m) -> m.to.equals(email)).findFirst().get();
         VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
         return regex.getText(mailMessage.text);
+    }
+    @AfterMethod(alwaysRun = true)
+    public void stopMailServer() {
+        app.mail().stop();
     }
 }
