@@ -27,9 +27,6 @@ public class ChangePasswordTest extends  TestBase {
 
     @Test
     public void changePasswordTest() throws IOException, MessagingException {
-//        HttpSession session = app.newSession();
-//        assertTrue(session.login("administrator", "root"));
-//        assertTrue(session.isLoggedInAs("administrator"));
 
         String newPassword = "password";
         UserData user = app.db().users().iterator().next();
