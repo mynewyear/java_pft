@@ -107,7 +107,6 @@ public class ApplicationManager {
         return userHelper;
     }
 
-
     public JamesHelper james() {
         if (jamesHelper == null) {
             jamesHelper = new JamesHelper(this);

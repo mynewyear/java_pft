@@ -177,5 +177,4 @@ public class JamesHelper {
             return null;
         }
     }
-
 }
